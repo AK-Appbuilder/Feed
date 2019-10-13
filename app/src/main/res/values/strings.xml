@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Feed</string>
+    <string name="app_name">Posts</string>
+
+    <string name="no_post_all">No posts!</string>
+
+    <string name="author">Author: %s</string>
+
+    <string name="comments">Total comments: %s</string>
 </resources>

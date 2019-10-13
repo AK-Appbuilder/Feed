@@ -1,6 +1,8 @@
 package com.boonapps.feed.source.local
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.boonapps.feed.data.Post
 
@@ -11,19 +13,28 @@ interface PostDao {
     /**
      * Select all post from the posts table.
      *
-     * @return all tasks.
+     * @return all posts.
      */
-    @Query("SELECT * FROM Posts")
+    @Query("SELECT * FROM Posts ORDER BY id ASC")
     suspend fun getPosts(): List<Post>
 
 
-
     /**
-     * Select a task by id.
+     * Select a post by id.
      *
-     * @param taskId the task id.
-     * @return the task with taskId.
+     * @param postId the post id.
+     * @return the post with post.
      */
     @Query("SELECT * FROM Posts WHERE id = :postId")
     suspend fun getPostById(postId: Int): Post?
+
+
+    /**
+     * Insert a post in the database. If the post already exists, replace it.
+     *
+     * @param post the post to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPost(post: Post)
+
 }
