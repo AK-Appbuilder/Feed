@@ -7,18 +7,20 @@ on:
 
 jobs:
 
-  lint:
+  android_lint:
     name: Running Lint
     runs-on: ubuntu-18.04
 
     steps:
-      - name: Set up JDK 1.8
+      - uses: actions/checkout@v2
+      - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
-      - name: Run Android Linter
-        run: ./gradlew lintDebug --stacktrace
+      - run: ./gradlew lintDebug --stacktrace
+      - uses: yutailang0119/action-android-lint@v1.0.2
+        with:
+         xml_path: build/reports/lint-results.xml
 
   test:
     name: Unit Tests
