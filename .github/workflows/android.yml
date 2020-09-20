@@ -20,7 +20,7 @@ jobs:
       - run: ./gradlew lintDebug --stacktrace
 
       - name: Run Kotlin Linter
-        run: ./gradlew ktlintStagingDebugCheck
+        run: ./gradlew ktlintDebugCheck
 
   test:
     name: Unit Tests
