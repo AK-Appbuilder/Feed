@@ -17,9 +17,6 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Run Kotlin Linter
-        run: ./gradlew ktlintDebugCheck --stacktrace
-
       - name: Run Android Linter
         run: ./gradlew lintDebug --stacktrace
 
