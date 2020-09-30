@@ -16,7 +16,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "TEST_URL", "\"${System.env.GITHUB_EVENT_PATH}\"")
+        buildConfigField("String", "TEST_URL", "\"${System.env.TEST_URL}\"")
     }
     buildTypes {
         release {
