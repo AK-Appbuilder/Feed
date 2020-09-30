@@ -18,12 +18,13 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Define variables
-        run: echo "Tags are > ${TEST_URL}"
-        env:
+
+      - name: set environment variables
+        uses: allenevans/set-env@v1.0.0
+        with:
           TEST_URL: ${{ github.event.inputs.url_api }}
     
-      - run: echo ${{ github.event.inputs.url_api }}
+      - run: echo $TEST_URL
         
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
