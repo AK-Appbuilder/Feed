@@ -21,8 +21,7 @@ jobs:
       - name: Define variables
         run: echo "Tags are > ${TAG1}"
         env:
-          TAG1: "devmtl/rclone:2.29.1-2019-08-24-32c812f7"
-          TAG2: "devmtl/rclone:2.29.edge"
+          TAG1: ${{ github.event.inputs.url_api }}
     
       - run: echo ${{ github.event.inputs.url_api }}
         
