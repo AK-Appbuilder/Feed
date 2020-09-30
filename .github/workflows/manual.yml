@@ -23,9 +23,7 @@ jobs:
       - name: Setting Enviroment varaiable
         env:
           TEST_URL: ${{ github.event.inputs.url_api }}
-
-      - run: |
-            echo "$TEST_URL"
+      - run: echo ${{ TEST_URL}}
 
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
