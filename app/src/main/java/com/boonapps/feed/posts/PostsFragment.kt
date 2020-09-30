@@ -5,11 +5,13 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.boonapps.feed.BuildConfig
 import com.boonapps.feed.EventObserver
 import com.boonapps.feed.R
 import com.boonapps.feed.databinding.PostFragmentBinding
 import com.boonapps.feed.postdetail.PostDetailFragment
 import com.boonapps.feed.util.addFragment
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.activity_main.view.*
 import timber.log.Timber
@@ -48,6 +50,14 @@ class PostsFragment : DaggerFragment() {
         setupNavigation()
 
         viewModel.loadPosts()
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        Snackbar.make(view, BuildConfig.TEST_URL, Snackbar.LENGTH_LONG).show()
     }
 
     private fun setupNavigation() {
