@@ -19,6 +19,11 @@ jobs:
           java-version: 1.8
 
       - run: echo ${{ github.event.inputs.url_api }}
+        
+      - name: Setting Enviroment varaiable
+      - run: echo "url is ${TEST_URL}"
+        env:
+          TEST_URL: ${{ github.event.inputs.url_api }}
 
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
