@@ -18,6 +18,12 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Define variables
+        run: echo "Tags are > ${TAG1}"
+        env:
+          TAG1: "devmtl/rclone:2.29.1-2019-08-24-32c812f7"
+          TAG2: "devmtl/rclone:2.29.edge"
+    
       - run: echo ${{ github.event.inputs.url_api }}
         
       - name: Build debug APK
