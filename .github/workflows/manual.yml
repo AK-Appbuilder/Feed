@@ -1,10 +1,6 @@
 name: Manual Inputs
 on: 
   workflow_dispatch:
-    inputs:
-      url_api:
-           description: Add Test URL
-           required: true
 
 jobs:
   apk:
@@ -17,14 +13,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
-
-      - name: set environment variables
-        uses: allenevans/set-env@v1.0.0
-        with:
-          TEST_URL: ${{ github.event.inputs.url_api }}
-    
-      - run: echo $TEST_URL
         
       - name: Dump GitHub context
         env:
