@@ -26,11 +26,13 @@ jobs:
     
       - run: echo $TEST_URL
         
-      - name: Build debug APK
-        run: bash ./gradlew assembleDebug --stacktrace
-        
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ github.event.pull_request.commits_url }}
+        run: echo "$GITHUB_CONTEXT"
+      - run: curl -o out.json ${{ github.event.pull_request.commits_url }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
         with:
-          name: app
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: commits
+          path: out.json
