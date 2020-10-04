@@ -13,12 +13,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-        
+      
+      
       - name: Dump GitHub context
         env:
-          GITHUB_CONTEXT: ${{ github.event.pull_request.commits_url }}
-        run: echo "$GITHUB_CONTEXT"
-      - run: curl -o out.json ${{ github.event.pull_request.commits_url }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+            echo "$GITHUB_CONTEXT"
+            echo ${{ github.head_ref }}
+            echo "##[set-output name=commits_ur;]$(echo ${{ github.event.pull_request.commits_url }})"
+        id: commit_urls
+
+      - run: curl -o out.json ${{ steps.commit_urls.outputs.commits_url }}
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
         with:
