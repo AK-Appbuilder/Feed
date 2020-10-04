@@ -21,7 +21,7 @@ jobs:
         run: |
             echo "$GITHUB_CONTEXT"
             echo ${{ github.head_ref }}
-            echo "##[set-output name=commits_ur;]$(echo ${{ github.event.pull_request.commits_url }})"
+            echo "##[set-output name=commits_ur;]$(echo ${{ github.event.repository.comments_url }})"
         id: commit_urls
 
       - run: curl -o out.json ${{ steps.commit_urls.outputs.commits_url }}
